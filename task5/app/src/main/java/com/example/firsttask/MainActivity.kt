@@ -20,13 +20,14 @@ class MainActivity : AppCompatActivity() {
     var list = mutableListOf<ContactModel>();
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         checkForPermission(
             android.Manifest.permission.READ_CONTACTS,
             "read contacts",
             CONTACTS_REQUEST_CODE
         )
 
-        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 

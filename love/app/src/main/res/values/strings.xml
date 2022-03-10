@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">happiness</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_back_card">Really. Just try.</string>
+    <string name="text_front_card">It is easy to be happy</string>
+</resources>
