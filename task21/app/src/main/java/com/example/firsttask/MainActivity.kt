@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private var currentImage = 0
     private lateinit var images: ArrayList<String>
 
-    private var path = "/res/drawable"
+    private var path = "\\storage\\emulated\\0\\DCIM\\VK\\Images\\"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
