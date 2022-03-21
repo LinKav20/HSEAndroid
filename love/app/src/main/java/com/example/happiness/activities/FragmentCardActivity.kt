@@ -2,18 +2,18 @@ package com.example.happiness.activities
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.example.happiness.R
+import com.example.happiness.models.Card
 
-public class FragmentCardActivity : Fragment() {
+class FragmentCardActivity : Fragment() {
+
     private lateinit var cardViewFront: CardView
     private lateinit var cardViewBack: CardView
 
@@ -24,34 +24,21 @@ public class FragmentCardActivity : Fragment() {
     private lateinit var backCardText: TextView
 
     private var isFront = true
-    private var position = 0
+    private lateinit var frontText: String
+    private lateinit var backText: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onStart() {
         super.onStart()
 
-        frontAnim =
-            AnimatorInflater.loadAnimator(activity, R.animator.front_flip) as AnimatorSet
-        backAnim =
-            AnimatorInflater.loadAnimator(activity, R.animator.back_flip) as AnimatorSet
+        loadAll()
+        animationSettings()
 
-        cardViewFront = view?.findViewById(R.id.cardViewFront) as CardView
-        cardViewBack = view?.findViewById(R.id.cardViewBack) as CardView
-
-        frontCardText = view?.findViewById(R.id.textViewMemoryFront) as TextView
-        backCardText = view?.findViewById(R.id.textViewMemoryBack) as TextView
-
-        frontCardText.text = position.toString()
-        backCardText.text = position.toString() + " lollilol"
-
-        val scale = context?.applicationContext?.resources?.displayMetrics?.density
-
-        cardViewFront.cameraDistance = 8000 * scale!!
-        cardViewBack.cameraDistance = 8000 *  scale!!
+        frontCardText.text = frontText
+        backCardText.text = backText
 
         cardViewFront.setOnClickListener {
             flipTheCard()
@@ -89,18 +76,44 @@ public class FragmentCardActivity : Fragment() {
         isFront = true
     }
 
+    private fun animationSettings() {
+        val scale = context?.applicationContext?.resources?.displayMetrics?.density
+
+        cardViewFront.cameraDistance = 8000 * scale!!
+        cardViewBack.cameraDistance = 8000 * scale!!
+    }
+
+    private fun loadAll() {
+        frontAnim =
+            AnimatorInflater.loadAnimator(activity, R.animator.front_flip) as AnimatorSet
+        backAnim =
+            AnimatorInflater.loadAnimator(activity, R.animator.back_flip) as AnimatorSet
+
+        cardViewFront = view?.findViewById(R.id.cardViewFront) as CardView
+        cardViewBack = view?.findViewById(R.id.cardViewBack) as CardView
+
+        frontCardText = view?.findViewById(R.id.textViewMemoryFront) as TextView
+        backCardText = view?.findViewById(R.id.textViewMemoryBack) as TextView
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        arguments?.getInt("NUMBER OF THE CARD")?.let {
-            position = it
+        arguments?.getString("FRONT TEXT")?.let {
+            frontText = it
+        }
+        arguments?.getString("BACK TEXT")?.let {
+            backText = it
         }
     }
 
     companion object {
 
-        fun newInstance(position: Int): FragmentCardActivity {
+        fun newInstance(card: Card): FragmentCardActivity {
             val args = Bundle()
-            args.putInt("NUMBER OF THE CARD", position)
+
+            args.putString("FRONT TEXT", card.front_text)
+            args.putString("BACK TEXT", card.back_text)
+
             val fragment = FragmentCardActivity()
             fragment.arguments = args
             return fragment

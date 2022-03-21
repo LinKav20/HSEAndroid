@@ -6,7 +6,6 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.widget.TextView
 import java.lang.Math.abs
-import kotlin.math.sign
 
 class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener,
     GestureDetector.OnDoubleTapListener {

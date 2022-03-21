@@ -1,5 +1,7 @@
 package com.example.firsttask
 
+import android.app.Activity
+import android.content.Intent
 import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var images: ArrayList<String>
 
     private var path = "\\storage\\emulated\\0\\DCIM\\VK\\Images\\"
+
+    val REQUEST_CODE = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

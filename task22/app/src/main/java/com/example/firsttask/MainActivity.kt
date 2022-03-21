@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             "read contacts",
             CONTACTS_REQUEST_CODE
         )
-        
+
         setContentView(R.layout.activity_main)
     }
 
