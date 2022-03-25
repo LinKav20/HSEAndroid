@@ -3,6 +3,7 @@ package com.example.happiness.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import com.example.happiness.R
@@ -20,10 +21,14 @@ class SecondActivity : AppCompatActivity() {
         text = findViewById(R.id.textViewMemoryBack)
 
         done.setOnClickListener {
-            var intent = Intent(this@SecondActivity, MainActivity::class.java)
-            intent.putExtra("data", text.text)
-            setResult(RESULT_OK, intent)
-            finish()
+           sendIntent()
         }
+    }
+
+    fun sendIntent(){
+        val intent = Intent(this@SecondActivity, MainActivity::class.java)
+        intent.putExtra("data", text.text.toString())
+        setResult(RESULT_OK, intent)
+        finish()
     }
 }

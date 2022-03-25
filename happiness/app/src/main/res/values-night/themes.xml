@@ -16,7 +16,7 @@
 
         <item name="android:textColor">@color/gray_blue</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:fontFamily">@font/oktaneue</item>
+        <item name="android:fontFamily">@font/oktaneue_medium</item>
 
     </style>
 
